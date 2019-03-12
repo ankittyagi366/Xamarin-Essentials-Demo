@@ -5,7 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="XamarinEssentials_FullDemo.Views.ConnectivityInformationPage" Title="Connectivity Information">
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Button Text="Check Internet Connectivity Status" Command="{Binding CheckConnectivityCommand}"/>
-        <Button Text="Get Internet Profiles" Command="{Binding CheckProfiles}"/>
+        <Button BackgroundColor="LightGray" Text="Check Internet Connectivity Status" Command="{Binding CheckConnectivityCommand}"/>
+        <Button BackgroundColor="LightGray" Text="Get Internet Profiles" Command="{Binding CheckProfiles}"/>
     </StackLayout>
 </ContentPage>

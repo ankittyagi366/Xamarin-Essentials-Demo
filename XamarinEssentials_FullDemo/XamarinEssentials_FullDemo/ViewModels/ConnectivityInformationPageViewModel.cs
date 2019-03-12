@@ -4,6 +4,7 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Xamarin.Essentials;
 
 namespace XamarinEssentials_FullDemo.ViewModels
@@ -16,7 +17,7 @@ namespace XamarinEssentials_FullDemo.ViewModels
 
         //Commands
         public DelegateCommand CheckConnectivityCommand { get; set; }
-
+        public DelegateCommand CheckProfiles { get; set; }
         //Properties
         IEnumerable<ConnectionProfile> profiles;
         NetworkAccess objNetworkAccess;
@@ -28,8 +29,43 @@ namespace XamarinEssentials_FullDemo.ViewModels
         {
             _dialogService = dialogService;
             CheckConnectivityCommand = new DelegateCommand(CheckInternetConnectivity);
+            CheckProfiles = new DelegateCommand(GetProfiles);
             profiles = Connectivity.ConnectionProfiles;
             objNetworkAccess = Connectivity.NetworkAccess;
+            Connectivity.ConnectivityChanged += ConnectivityChanged;
+        }
+
+        private void GetProfiles()
+        {
+            StringBuilder messageBuilder = new StringBuilder();
+           
+            if (profiles.Count()>0)
+            {
+                foreach (var item in profiles)
+                {
+                    messageBuilder.Append(item + "\n");
+                }
+                _dialogService.DisplayAlertAsync("Profiles", messageBuilder.ToString(), "Ok");
+            }
+            else
+            {
+                _dialogService.DisplayAlertAsync("Profiles","No profiles found", "Ok");
+            }
+
+        }
+
+        private void ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            StringBuilder messageBuilder = new StringBuilder();
+            profiles = e.ConnectionProfiles;
+            foreach (var item in profiles)
+            {
+                messageBuilder.Append("Profiles :"+item+"\n");
+            }
+            objNetworkAccess = e.NetworkAccess;
+            messageBuilder.Append("Network :" + objNetworkAccess);
+            _dialogService.DisplayAlertAsync("Changed Status",messageBuilder.ToString() , "Ok");
+            messageBuilder.Clear();
         }
 
         private void CheckInternetConnectivity()
