@@ -28,8 +28,17 @@ namespace XamarinEssentials_FullDemo.Behaviors
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             bool iSValid = false;
-            iSValid = Regex.IsMatch(e.NewTextValue, MakeCombinedPattern());
-            ((Entry)sender).TextColor = iSValid ? Color.Default : Color.Red;
+            if (e.NewTextValue==null)
+            {
+               
+                iSValid = Regex.IsMatch(e.OldTextValue, MakeCombinedPattern());
+               
+            }
+            else
+            {
+                iSValid = Regex.IsMatch(e.NewTextValue, MakeCombinedPattern());
+            }
+           ((Entry)sender).TextColor = iSValid ? Color.Default : Color.Red;
         }
 
         protected override void OnDetachingFrom(Entry entry)
