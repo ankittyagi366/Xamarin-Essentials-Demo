@@ -51,6 +51,9 @@ namespace XamarinEssentials_FullDemo.ViewModels
             int result =await  _localDbService.InsertIntoContactTable(objContactInfo);
             _phoneNumber = string.Empty;
             _name = string.Empty;
+            RaisePropertyChanged(PhoneNumber);
+            RaisePropertyChanged(Name);
+
             if (result>0)
             {
                 await _dialogService.DisplayAlertAsync("Successfull", "Contact Added Successfully ", "ok");

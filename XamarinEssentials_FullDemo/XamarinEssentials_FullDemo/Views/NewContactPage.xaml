@@ -10,9 +10,9 @@
 
     <StackLayout>
         <Label Text="Name"/>
-        <Entry  Text="{Binding Name}" />
+        <Entry  Text="{Binding Name,Mode=TwoWay}" />
         <Label Text="Phone number"/>
-        <Entry  Text="{Binding PhoneNumber}" >
+        <Entry  Text="{Binding PhoneNumber,Mode=TwoWay}" >
             <Entry.Behaviors>
                 <customBehaviour:PhoneNumberValidation />
             </Entry.Behaviors>
