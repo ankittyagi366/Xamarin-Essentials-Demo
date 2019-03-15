@@ -11,7 +11,7 @@
                 <!-- TODO: // Update the Layout and add some real menu items  -->
                 <Button Text="Application Information" Command="{Binding NavigateToAppInfoPage}" CommandParameter="AppInfo"  />
                 <Button Text="Check Connectivity" Command="{Binding NavigateToConnectivityInfoPage}" CommandParameter="ConnectvityInfo"  />
-
+                <Button Text="File System Helper" Command="{Binding NavigationToFileSystemPage}" CommandParameter="FileSystem"/>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>

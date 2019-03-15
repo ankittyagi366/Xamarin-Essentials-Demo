@@ -12,7 +12,7 @@ namespace XamarinEssentials_FullDemo.ViewModels
         //Commands
         public DelegateCommand NavigateToAppInfoPage { get; set; }
         public DelegateCommand NavigateToConnectivityInfoPage { get; set; }
-
+        public DelegateCommand NavigationToFileSystemPage { get; set; }
 
         //Navigation Service
         private  INavigationService _navigationService;
@@ -26,6 +26,12 @@ namespace XamarinEssentials_FullDemo.ViewModels
         {
             NavigateToAppInfoPage = new DelegateCommand(NavigateToAppInformationPage);
             NavigateToConnectivityInfoPage = new DelegateCommand(NavigateToConnectivityInformationPage);
+            NavigationToFileSystemPage = new DelegateCommand(NavigateToFileSystemHelperPage);
+        }
+
+        private void NavigateToFileSystemHelperPage()
+        {
+            _navigationService.NavigateAsync("NavigationPage/FileSystemTabPage");
         }
 
         private void NavigateToAppInformationPage ()

@@ -4,6 +4,8 @@ using XamarinEssentials_FullDemo.ViewModels;
 using XamarinEssentials_FullDemo.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinEssentials_FullDemo.Services;
+using XamarinEssentials_FullDemo.Interfaces;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamarinEssentials_FullDemo
@@ -34,6 +36,14 @@ namespace XamarinEssentials_FullDemo
             containerRegistry.RegisterForNavigation<PrismMasterDetailPage, PrismMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<AppInformationPage, AppInformationPageViewModel>();
             containerRegistry.RegisterForNavigation<ConnectivityInformationPage, ConnectivityInformationPageViewModel>();
+
+            containerRegistry.RegisterForNavigation<FileSystemTabPage, FileSystemTabPageViewModel>();
+            containerRegistry.RegisterForNavigation<NewContactPage, NewContactPageViewModel>();
+            containerRegistry.RegisterForNavigation<ContactsDetailsPage, ContactsDetailsPageViewModel>();
+
+
+            //Services
+            containerRegistry.RegisterSingleton<ILocalPhoneDB,PhoneLocalDB> ();
         }
     }
 }
